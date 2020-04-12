@@ -1,26 +1,47 @@
 const express = require('express');
 const router = express.Router();
-const { upload } = require('../helpers/upload');
+const { upload, list } = require('../helpers/upload');
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
+let uploading = false;
 
 router.post('/upload', async function (req, res) {
   try {
-    const flux = req.body.flux;
-    console.log(flux);
+    if (!uploading) {
+      uploading = true;
+      const flux = req.body.flux;
+      console.log(flux);
 
-    for (let f of flux) {
-      await upload(f.src, f.ep);
+      for (let f of flux) {
+        await upload(f.src, f.ep);
+      }
+
+      uploading = false;
+      await res.json('uploaded');
+    } else {
+      await res.json('Already uploading');
     }
+  } catch (err) {
+    uploading = false;
+    console.error(err);
+    res.status(400).json(err);
+  }
+});
 
-    res.json('uploaded');
+router.get('/list', async function (req, res) {
+  try {
+    list().then(resp => {
+      res.json(resp);
+    }).catch(err => {
+      res.status(400).json(err);
+    });
   } catch (err) {
     console.error(err);
     res.status(400).json(err);
   }
+});
+
+router.get('/uploading', function (req, res) {
+  res.json(uploading);
 });
 
 module.exports = router;

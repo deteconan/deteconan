@@ -32,19 +32,24 @@ async function download(url) {
     return response.data;
 }
 
-async function list() {
-    let parents = "1hoM_J9qt2YnOkV8iyy-N2B7ag4GWWiE8";
-    drive.files.list({
-        auth: jwToken,
-        pageSize: 10,
-        q: "'" + parents + "' in parents and trashed=false",
-        fields: 'files(id, name)',
-    }, (err, {data}) => {
-        console.log(data.files);
-    });
-}
-
 module.exports = {
+    async list() {
+        let parents = '1hoM_J9qt2YnOkV8iyy-N2B7ag4GWWiE8';
+
+        return new Promise(async (resolve, reject) => {
+            await drive.files.list({
+                auth: jwToken,
+                q: "'" + parents + "' in parents and trashed=false",
+                fields: 'files(id, name)',
+            }, (err, {data}) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(data.files);
+            });
+        });
+    },
+
     async upload(url, filename) {
         const buffer = await download(url);
 
