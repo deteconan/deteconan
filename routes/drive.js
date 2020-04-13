@@ -29,11 +29,10 @@ router.post('/upload', async function (req, res) {
         }
       }
 
-      Promise.all(promises).then(() => {
-        uploading = false;
-      }).catch(err => {
-        uploading = false;
+      Promise.all(promises).catch(err => {
         console.error(err);
+      }).finally(() => {
+        uploading = false;
       });
       res.json('started');
     } else {
