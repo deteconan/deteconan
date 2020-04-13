@@ -7,32 +7,24 @@ let uploading = false;
 router.post('/upload', async function (req, res) {
   try {
     if (!uploading) {
-      uploading = true;
-      const flux = req.body.flux;
-      //console.log(flux);
-      let promises = [];
+      let flux = req.body.flux;
 
       let files = await list();
       files = files.map(f => f.name);
 
-      for (let f of flux) {
-        if (files.indexOf(f.ep.toString()) === -1) {
-          promises.push(
-              new Promise((resolve, reject) => {
-                upload(f.src, f.ep).then(res => {
-                  resolve(res);
-                }).catch(err => {
-                  reject(err);
-                });
-              })
-          );
-        }
-      }
+      flux = flux.filter(f => files.indexOf(f.ep.toString()) === -1);
 
-      Promise.allSettled(promises).then(() => {
-        uploading = false;
-      }).catch(err => {
-        console.error(err);
+      new Promise(async () => {
+        try {
+          uploading = true;
+          for (let f of flux) {
+            await upload(f.src, f.ep);
+          }
+        } catch (err) {
+          console.log(err);
+        } finally {
+          uploading = false;
+        }
       });
       res.json('started');
     } else {
