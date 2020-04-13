@@ -31,6 +31,9 @@ router.post('/upload', async function (req, res) {
 
       Promise.all(promises).then(() => {
         uploading = false;
+      }).catch(err => {
+        uploading = false;
+        console.error(err);
       });
       res.json('started');
     } else {
