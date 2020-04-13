@@ -4,27 +4,31 @@ const { upload, list } = require('../helpers/upload');
 
 let uploading = false;
 
-router.post('/upload', function (req, res) {
+router.post('/upload', async function (req, res) {
   try {
     if (!uploading) {
       uploading = true;
       const flux = req.body.flux;
-      console.log(flux);
+      //console.log(flux);
       let promises = [];
 
+      let files = await list();
+      files = files.map(f => f.name);
+
       for (let f of flux) {
-        promises.push(
-            new Promise((resolve, reject) => {
-              upload(f.src, f.ep).then(res => {
-                resolve(res);
-              }).catch(err => {
-                reject(err);
-              });
-            })
-        );
+        if (files.indexOf(f.ep.toString()) === -1) {
+          promises.push(
+              new Promise((resolve, reject) => {
+                upload(f.src, f.ep).then(res => {
+                  resolve(res);
+                }).catch(err => {
+                  reject(err);
+                });
+              })
+          );
+        }
       }
 
-      console.log(promises);
       Promise.all(promises).then(() => {
         uploading = false;
       });
