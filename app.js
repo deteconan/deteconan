@@ -18,17 +18,12 @@ app.use(function(req, res, next) {
 
 const staticPage = serveStatic('dist', {});
 app.use(staticPage);
-//app.use(express.static(`dist`));
 
-app.get(/^((?!\/api\/).)*$/, function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(__dirname + '/dist/index.html')
 });
 
-app.get(`/`, function(req, res) {
-  res.sendFile(path.join(__dirname, `dist`, `index.html`));
-});
-
-app.use('/drive', driveRouter);
+app.use('/api/drive', driveRouter);
 
 const port = process.env.PORT || 3000;
 const server = http.createServer(app);
