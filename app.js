@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 const staticPage = serveStatic('dist', {});
 app.use(staticPage);
 
-app.get('/', function (req, res) {
+app.get(/^((?!\/api\/).)*$/, function (req, res) {
   res.sendFile(__dirname + '/dist/index.html')
 });
 
