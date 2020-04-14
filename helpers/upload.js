@@ -41,6 +41,7 @@ module.exports = {
                 auth: jwToken,
                 q: "'" + parents + "' in parents and trashed=false",
                 fields: 'files(id, name)',
+                pageSize: 1000
             }, (err, {data}) => {
                 if (err)
                     reject(err);

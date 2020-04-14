@@ -1,5 +1,5 @@
 $theme-colors: (
-        "primary": #d96301
+  "primary": #d96301
 );
 
 @import 'node_modules/bootstrap/scss/bootstrap';
@@ -7,3 +7,4 @@ $theme-colors: (
 
 @import "list";
 @import "form";
+@import "navbar";
