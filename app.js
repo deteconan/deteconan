@@ -1,7 +1,6 @@
 const express = require('express');
 const http = require('http');
 const driveRouter = require('./routes/drive');
-const path = require('path');
 const serveStatic = require('serve-static');
 
 const app = express();
