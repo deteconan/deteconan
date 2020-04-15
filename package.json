@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "build": "cd app && npm cache -f clean && npm i && npm i -g @vue/cli-service-global && echo $'\\nexport PATH=\"$(npm -g bin)\":$PATH' >> ~/.bashrc && vue-cli-service build"
+    "build": "cd app && npm cache -f clean && npm i && vue-cli-service build"
   },
   "dependencies": {
     "axios": "^0.19.2",
