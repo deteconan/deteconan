@@ -1,0 +1,37 @@
+.custom-file {
+  background: transparent !important;
+}
+
+.custom-file-label {
+  background: rgba(255, 255, 255, 0);
+  color: white;
+  text-align: left;
+
+  &::after {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+}
+
+.custom-select {
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+
+  option {
+    color: black;
+  }
+}
+
+.form-control {
+  color: white !important;
+  background-color: transparent;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  &:focus {
+    background-color: transparent;
+  }
+}
