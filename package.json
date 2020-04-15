@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "build": "cd app && npm cache -f clean && npm i && npm run build"
+    "build": "cd app && npm cache -f clean && npm i --only=dev && npm run build"
   },
   "dependencies": {
     "axios": "^0.19.2",
