@@ -15,11 +15,11 @@ app.use(function(req, res, next) {
   next();
 });
 
-const staticPage = serveStatic('dist', {});
+const staticPage = serveStatic('app/dist', {});
 app.use(staticPage);
 
 app.get(/^((?!\/api\/).)*$/, function (req, res) {
-  res.sendFile(__dirname + '/dist/index.html')
+  res.sendFile(__dirname + '/app/dist/index.html')
 });
 
 app.use('/api/drive', driveRouter);

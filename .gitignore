@@ -1,1 +1,6 @@
 .idea
+app/dist
+app/node_modules
+app/.idea
+app/.git
+app/.env.local
