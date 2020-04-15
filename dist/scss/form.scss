@@ -22,3 +22,16 @@
     color: black;
   }
 }
+
+.form-control {
+  color: white !important;
+  background-color: transparent;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  &:focus {
+    background-color: transparent;
+  }
+}

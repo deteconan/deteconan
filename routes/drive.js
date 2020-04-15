@@ -6,6 +6,13 @@ let uploading = false;
 
 router.post('/upload', async function (req, res) {
   try {
+    let password = req.body.password;
+
+    if (password != 'jesuiskudo') {
+      res.status(401).json('Wrong password');
+      return;
+    }
+
     if (!uploading) {
       let flux = req.body.flux;
 
