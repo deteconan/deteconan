@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "rm -rf app/node_modules app/package-lock.json && npm i @vue/cli-service --save-dev && npm install --prefix app && npm run-script build --prefix app"
+    "build": "rm -rf node_modules package-lock.json && npm i @vue/cli-service --save-dev && npm install --prefix app && npm run-script build --prefix app"
   },
   "dependencies": {
     "axios": "^0.19.2",
