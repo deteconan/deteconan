@@ -10,7 +10,7 @@
                 <div class="text">{{ value.name }}</div>
             </div>
         </div>
-        <b-form-file @input="$emit('input', $event)" ref="file-input" :accept="fileType" style="visibility: hidden; position: absolute"></b-form-file>
+        <b-form-file @input="$emit('input', $event)" ref="file-input" :accept="fileType" class="hidden-form"></b-form-file>
     </div>
 </template>
 
@@ -48,6 +48,13 @@
 
         .text {
             color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hidden-form {
+            visibility: hidden;
+            position: absolute;
+            width: 0;
+            height: 0;
         }
     }
 </style>

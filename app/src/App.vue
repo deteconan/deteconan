@@ -30,6 +30,7 @@ export default {
     }
 
     background: linear-gradient(135deg, #092c79, #3137d9) fixed;
+    width: 100%;
     height: 100%;
     scrollbar-color: rgba(132, 150, 220, 0.8) #242144; /* thumb and track color */
     scrollbar-width: thin;
@@ -38,6 +39,7 @@ export default {
   html {
     margin: 0;
     padding: 0;
+    width: 100%;
     height: 100%;
     color: white;
   }
@@ -45,6 +47,7 @@ export default {
   body {
     margin: 0;
     padding: 0;
+    width: 100% !important;
     height: 100% !important;
     background: transparent !important;
   }
