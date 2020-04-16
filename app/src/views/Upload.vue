@@ -13,6 +13,10 @@
                 <b-icon v-if="!loading" icon="cloud-upload"></b-icon>
                 <b-spinner v-else></b-spinner>
             </b-button>
+            <div v-if="uploadingEpisode" class="d-inline-flex" style="align-items: center; color: rgba(255,255,255,0.8)">
+                <span class="pl-3">Uploading {{ uploadingEpisode }} </span>
+                <b-spinner class="ml-2" type="grow" small></b-spinner>
+            </div>
         </form>
 
         <div v-if="file" class="pb-3">
@@ -35,6 +39,7 @@
                 file: null,
                 flux: null,
                 loading: false,
+                uploadingEpisode: null,
                 jwToken: null,
                 drive: null,
                 interval: null,
@@ -85,7 +90,8 @@
             },
             updateUploading() {
                 axios.get(process.env.VUE_APP_API_URL + '/api/drive/uploading').then(res => {
-                    this.loading = res.data;
+                    this.loading = res.data.uploading;
+                    this.uploadingEpisode = res.data.uploadingEpisode;
                 }).catch(err => {
                     this.loading = false;
                     console.log(err);

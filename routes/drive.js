@@ -3,6 +3,7 @@ const router = express.Router();
 const { upload, list } = require('../helpers/upload');
 
 let uploading = false;
+let uploadingEpisode = null;
 
 router.post('/upload', async function (req, res) {
   try {
@@ -25,11 +26,13 @@ router.post('/upload', async function (req, res) {
         try {
           uploading = true;
           for (let f of flux) {
+            uploadingEpisode = f.ep;
             await upload(f.src, f.ep);
           }
         } catch (err) {
           console.log(err);
         } finally {
+          uploadingEpisode = null;
           uploading = false;
         }
       });
@@ -58,7 +61,10 @@ router.get('/list', async function (req, res) {
 });
 
 router.get('/uploading', function (req, res) {
-  res.json(uploading);
+  res.json({
+    uploading: uploading,
+    uploadingEpisode: uploadingEpisode
+  });
 });
 
 module.exports = router;
