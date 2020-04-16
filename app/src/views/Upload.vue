@@ -9,7 +9,7 @@
         </div>
 
         <form @submit.prevent="upload" class="my-4">
-            <b-button type="submit" class="upload-btn" variant="primary" :disabled="!flux || loading">
+            <b-button type="submit" class="upload-btn" variant="primary" :disabled="!flux || loading || !password">
                 <b-icon v-if="!loading" icon="cloud-upload"></b-icon>
                 <b-spinner v-else></b-spinner>
             </b-button>
@@ -38,7 +38,7 @@
                 jwToken: null,
                 drive: null,
                 interval: null,
-                password: ''
+                password: null
             }
         },
         mounted() {
