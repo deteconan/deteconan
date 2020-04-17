@@ -5,17 +5,17 @@
 
             <file-drop v-model="file" @input="parse" file-type=".json" class="mb-3"></file-drop>
 
-            <b-input v-model="password" type="password" placeholder="Password" trim></b-input>
+            <b-input v-model="password" :state="Boolean(password)" type="password" placeholder="Password" trim></b-input>
         </div>
 
         <form @submit.prevent="upload" class="my-4">
-            <b-button type="submit" class="upload-btn" variant="primary" :disabled="!flux || loading || !password">
-                <b-icon v-if="!loading" icon="cloud-upload"></b-icon>
-                <b-spinner v-else></b-spinner>
+            <b-button v-if="!loading" type="submit" class="upload-btn" variant="primary" :disabled="!flux || loading || !password">
+                <b-icon icon="cloud-upload"></b-icon>
             </b-button>
-            <div v-if="uploadingEpisode" class="d-inline-flex" style="align-items: center; color: rgba(255,255,255,0.8)">
-                <span class="pl-3">Uploading {{ uploadingEpisode }} </span>
-                <b-spinner class="ml-2" type="grow" small></b-spinner>
+            <div v-else class="d-inline-flex" style="align-items: center; color: rgba(255,255,255,0.8)">
+                <b-spinner class="mr-2 text-warning" type="grow" small></b-spinner>
+                <span class="text-warning font-weight-bold" style="letter-spacing: 1px"> Uploading {{ uploadingEpisode }} </span>
+                <b-spinner class="ml-2 text-warning" type="grow" small></b-spinner>
             </div>
         </form>
 
