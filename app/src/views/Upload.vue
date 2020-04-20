@@ -1,5 +1,5 @@
 <template>
-    <b-container class="content">
+    <main-page>
         <div style="width: 300px; margin: auto">
             <b-img class="img-thumbnail my-3" src="https://images7.alphacoders.com/482/thumb-1920-482681.jpg"></b-img>
 
@@ -27,7 +27,7 @@
                 </b-list-group-item>
             </b-list-group>
         </div>
-    </b-container>
+    </main-page>
 </template>
 
 <script>
@@ -102,12 +102,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .content {
-        background: rgba(255,255,255,0.1);
-        height: auto;
-        min-height: 100%;
-    }
-
     .custom-file {
         background: rgba(0, 0, 0, 0.3);
         padding: 1em;

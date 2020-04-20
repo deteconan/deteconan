@@ -27,11 +27,11 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background: rgba(132, 150, 220, 0.8);
+      background: rgba(72, 88, 133, 0.8);
       border-radius: 10px;
     }
 
-    background: black;
+    background: #132a3a;
     width: 100%;
     height: 100%;
     scrollbar-color: rgba(132, 150, 220, 0.8) #242144; /* thumb and track color */

@@ -19,10 +19,10 @@
     </b-navbar>
     <div v-else class="mobile-menu">
         <b-row class="h-100">
-            <b-col class="my-auto menu-item" @click="reach('/')">
+            <b-col class="my-auto menu-item" :class="{'active': this.$route.name === 'episodes'}" @click="reach('/')">
                 <b-icon icon="house"></b-icon>
             </b-col>
-            <b-col class="my-auto menu-item" @click="reach('/upload')">
+            <b-col class="my-auto menu-item" :class="{'active': this.$route.name === 'upload'}" @click="reach('/upload')">
                 <b-icon icon="cloud-upload"></b-icon>
             </b-col>
         </b-row>
@@ -38,7 +38,7 @@
 <style lang="scss" scoped>
     .menu {
         padding: 0.5em 1em;
-        background: linear-gradient(#2b2828, #282a2b);
+        background: #111111;
 
         .link {
             margin: 0 1em;
@@ -57,7 +57,7 @@
         left: 0;
         height: 45px;
         width: 100%;
-        background: linear-gradient(#2b2828, #282a2b);
+        background: #111111;
 
         svg {
             color: white;
@@ -74,6 +74,12 @@
                     padding: 20px;
                     background: rgba(255, 255, 255, 0.1);
                 }
+            }
+        }
+
+        .active {
+            svg {
+                color: #ff894f;
             }
         }
     }
