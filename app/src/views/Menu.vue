@@ -1,5 +1,5 @@
 <template>
-    <b-navbar class="menu" toggleable="lg" type="dark" :sticky="!isMobileDevice()">
+    <b-navbar v-if="!isMobileDevice()" class="menu" toggleable="lg" type="dark" :sticky="!isMobileDevice()">
         <b-navbar-brand to="#">Deteconan</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -17,23 +17,28 @@
             </b-navbar-nav>
         </b-collapse>
     </b-navbar>
+    <div v-else class="mobile-menu">
+        <b-row class="h-100">
+            <b-col class="my-auto menu-item" @click="reach('/')">
+                <b-icon icon="house"></b-icon>
+            </b-col>
+            <b-col class="my-auto menu-item" @click="reach('/upload')">
+                <b-icon icon="cloud-upload"></b-icon>
+            </b-col>
+        </b-row>
+    </div>
 </template>
 
 <script>
     export default {
-        name: "Menu",
-        methods: {
-            reach(url) {
-                this.$router.push(url);
-            }
-        }
+        name: "Menu"
     }
 </script>
 
 <style lang="scss" scoped>
     .menu {
         padding: 0.5em 1em;
-        background: #0d1850;
+        background: linear-gradient(#2b2828, #282a2b);
 
         .link {
             margin: 0 1em;
@@ -41,6 +46,34 @@
             span {
                 text-transform: uppercase;
                 letter-spacing: 0.8px;
+            }
+        }
+    }
+
+    .mobile-menu {
+        z-index: 50;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 45px;
+        width: 100%;
+        background: linear-gradient(#2b2828, #282a2b);
+
+        svg {
+            color: white;
+            width: 45px;
+            height: 45px;
+            padding: 10px;
+            transition: 250ms ease;
+            border-radius: 50%;
+        }
+
+        .menu-item {
+            &:active {
+                svg {
+                    padding: 20px;
+                    background: rgba(255, 255, 255, 0.1);
+                }
             }
         }
     }

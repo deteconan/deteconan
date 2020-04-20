@@ -10,7 +10,7 @@
                 <div class="text">{{ value.name }}</div>
             </div>
         </div>
-        <b-form-file @input="$emit('input', $event)" ref="file-input" :accept="fileType" class="hidden-form"></b-form-file>
+        <input type="file" @input="onFileChanged" ref="file-input" :accept="fileType" class="hidden-form">
     </div>
 </template>
 
@@ -28,7 +28,11 @@
         },
         methods: {
             handleFileInput() {
-                this.$refs['file-input'].$refs.input.click();
+                this.$refs['file-input'].click();
+            },
+            onFileChanged() {
+                const file = this.$refs['file-input'].files[0];
+                this.$emit('input', file);
             }
         }
     }

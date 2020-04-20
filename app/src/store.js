@@ -16,7 +16,7 @@ export default new Vuex.Store({
     },
     getters: {
         currentEpisode(state) {
-            return state.episode;
+            return state.episodes.filter(e => e.name === state.episode.toString()).pop();
         },
         episodes(state) {
             return state.episodes;
@@ -25,6 +25,14 @@ export default new Vuex.Store({
     mutations: {
         setEpisode(state, episode) {
             state.episode = episode;
+        },
+        nextEpisode(state) {
+            if (parseInt(state.episodes[state.episodes.length-1].name) > state.episode)
+                state.episode++;
+        },
+        previousEpisode(state) {
+            if (state.episode > 1)
+                state.episode--;
         },
         loadEpisodes(state) {
             axios.get(process.env.VUE_APP_API_URL + '/api/drive/list').then(res => {

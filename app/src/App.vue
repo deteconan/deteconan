@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <Menu></Menu>
-    <router-view></router-view>
+    <Menu class="menu-fixed"></Menu>
+    <keep-alive>
+      <router-view class="pb-5 pb-lg-0"></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-export default {
+  export default {
   name: 'App',
   mounted() {
     this.$store.commit('loadEpisodes');
@@ -29,7 +31,7 @@ export default {
       border-radius: 10px;
     }
 
-    background: linear-gradient(135deg, #092c79, #3137d9) fixed;
+    background: black;
     width: 100%;
     height: 100%;
     scrollbar-color: rgba(132, 150, 220, 0.8) #242144; /* thumb and track color */

@@ -4,6 +4,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import Menu from "./views/Menu";
 import VideoPlayer from "./components/VideoPlayer";
 import FileDrop from "./components/FileDrop";
+import fullscreen from 'vue-fullscreen';
 
 import router from './router';
 import store from './store';
@@ -15,6 +16,7 @@ Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+Vue.use(fullscreen);
 
 Vue.component('Menu', Menu);
 Vue.component('video-player', VideoPlayer);

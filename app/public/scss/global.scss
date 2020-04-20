@@ -1,6 +1,7 @@
 $theme-colors: (
   "primary": #d96301,
-  "warning": #ff894f
+  "warning": #ff894f,
+  "light": rgba(255, 255, 255, 0.8)
 );
 
 @import 'node_modules/bootstrap/scss/bootstrap';
