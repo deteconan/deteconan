@@ -1,7 +1,10 @@
 <template>
     <div :class="{'fullscreen': fullscreen}">
         <h3 v-if="title" class="title">{{ title }}</h3>
-        <b-embed :src="url" aspect="16by9" type="iframe" allowfullscreen></b-embed>
+        <div class="video-box">
+            <b-spinner class="spinner" variant="light"></b-spinner>
+            <b-embed :src="url" aspect="16by9" type="iframe" allowfullscreen></b-embed>
+        </div>
     </div>
 </template>
 
@@ -60,5 +63,18 @@
         width: 100%;
         height: 100%;
         z-index: 100;
+    }
+
+    .video-box {
+        background: black;
+        position: relative;
+
+        .spinner {
+            position: absolute;
+            width: 2.5rem;
+            height: 2.5rem;
+            left: calc(50% - 1.25rem);
+            top: calc(50% - 1.25rem);
+        }
     }
 </style>

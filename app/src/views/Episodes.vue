@@ -1,6 +1,6 @@
 <template>
     <main-page v-if="episodes">
-        <div class="content-box pt-5 pt-lg-3">
+        <div class="content-box pt-5">
             <video-player ref="video-player" v-if="currentEpisode" :id="currentEpisode.id" :name="currentEpisode.name"></video-player>
 
             <div class="pr-2 pr-lg-0 py-3 float-left">
@@ -15,7 +15,7 @@
                 <b-button @click="$store.commit('previousEpisode')" class="mr-2" variant="outline-light">
                     <b-icon icon="skip-backward-fill"></b-icon>
                 </b-button>
-                <b-button @click="$store.commit('nextEpisode')" class="mr-3" variant="outline-light">
+                <b-button @click="$store.commit('nextEpisode')" class="mr-3 mr-lg-0" variant="outline-light">
                     <b-icon icon="skip-forward-fill"></b-icon>
                 </b-button>
             </div>

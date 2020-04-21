@@ -1,9 +1,9 @@
 <template>
     <main-page>
-        <div style="width: 300px; margin: auto">
+        <div class="pt-3 pt-lg-5" style="width: 300px; margin: auto">
             <b-img class="img-thumbnail my-3" src="https://images7.alphacoders.com/482/thumb-1920-482681.jpg"></b-img>
 
-            <file-drop v-model="file" @input="parse" file-type=".json" class="mb-3"></file-drop>
+            <file-drop v-model="file" @input="parse" file-type="*" class="mb-3"></file-drop>
 
             <b-input v-model="password" :state="Boolean(password)" type="password" placeholder="Password" trim></b-input>
         </div>
