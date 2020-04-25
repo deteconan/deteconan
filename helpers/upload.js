@@ -1,6 +1,7 @@
 const { google } = require('googleapis');
-const credentials = require('./credentials/credentials11.json');
+const credentials = require('./credentials/credentials10.json');
 const axios = require('axios');
+const m3u8stream = require('m3u8stream');
 
 const jwToken = new google.auth.JWT(
     credentials.client_email,
@@ -52,7 +53,11 @@ module.exports = {
     },
 
     async upload(url, filename) {
-        const buffer = await download(url);
+        let buffer = null;
+        if (url.indexOf('m3u8') !== -1)
+            buffer = await m3u8stream(url);
+        else
+            buffer = await download(url);
 
         let folder = '1hoM_J9qt2YnOkV8iyy-N2B7ag4GWWiE8';
 
