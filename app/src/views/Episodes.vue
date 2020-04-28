@@ -1,22 +1,22 @@
 <template>
-    <main-page v-if="episodes">
+    <main-page v-if="episodes && currentEpisode">
+        <div v-if="isMobileDevice()">
+            <b-img :src="require('../assets/logo.png')" width="90px" height="90px" class="rounded-circle mt-4" style="border: 2px solid white"></b-img>
+        </div>
         <div class="content-box pt-5">
-            <video-player ref="video-player" v-if="currentEpisode" :id="currentEpisode.id" :name="currentEpisode.name"></video-player>
+            <video-player ref="video-player" :id="currentEpisode.id" :name="currentEpisode.name"></video-player>
 
-            <div class="pr-2 pr-lg-0 py-3 float-left">
-                <span v-if="!isMobileDevice()" class="text-white" style="font-size: 15pt">Choisir épisode : </span>
-                <b-select class="episode-chooser ml-3" v-model="$store.state.episode" @input="$store.commit('setEpisode', currentEpisode.name)">
+            <div class="py-3" :class="{ 'float-right': !isMobileDevice() }">
+                <b-button @click="$store.commit('previousEpisode')" class="btn-back" variant="outline-light">
+                    <b-icon style="stroke: rgba(255,255,255,0.8)" icon="chevron-left"></b-icon>
+                </b-button>
+                <b-select class="episode-chooser" v-model="episode">
                     <option v-for="episode in episodes" :key="episode.name">
                         {{ episode.name }}
                     </option>
                 </b-select>
-            </div>
-            <div class="py-3 float-right">
-                <b-button @click="$store.commit('previousEpisode')" class="mr-2" variant="outline-light">
-                    <b-icon icon="skip-backward-fill"></b-icon>
-                </b-button>
-                <b-button @click="$store.commit('nextEpisode')" class="mr-3 mr-lg-0" variant="outline-light">
-                    <b-icon icon="skip-forward-fill"></b-icon>
+                <b-button @click="$store.commit('nextEpisode')" class="btn-forward" variant="outline-light">
+                    <b-icon style="stroke: rgba(255,255,255,0.8)" icon="chevron-right"></b-icon>
                 </b-button>
             </div>
         </div>
@@ -32,6 +32,14 @@
             },
             episodes() {
                 return this.$store.getters.episodes;
+            },
+            episode: {
+                get() {
+                    return this.$store.getters.currentEpisode.name;
+                },
+                set(val) {
+                    this.$store.commit('setEpisode', val);
+                }
             }
         },
         activated() {
@@ -70,6 +78,26 @@
     }
 
     .episode-chooser {
-        width: 100px;
+        width: 80px;
+        margin: 0 0.5em;
+
+        @media screen and (max-width: 1000px) {
+            margin: 0;
+            width: 100px;
+        }
+    }
+
+    .btn-back {
+        @media screen and (max-width: 1000px) {
+            float: left;
+            margin-left: 0.75em;
+        }
+    }
+
+    .btn-forward {
+        @media screen and (max-width: 1000px) {
+            float: right;
+            margin-right: 0.75em;
+        }
     }
 </style>

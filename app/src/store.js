@@ -11,23 +11,27 @@ const vuexLocal = new VuexPersistence({
 
 export default new Vuex.Store({
     state: {
-        episode: 1,
-        episodes: []
+        episode: 0,
+        episodes: null
     },
     getters: {
         currentEpisode(state) {
-            return state.episodes.filter(e => e.name === state.episode.toString()).pop();
+            if (!state.episodes)
+                return null;
+            if (state.episode < 0 || state.episodes > state.episodes.length-1)
+                state.episode = 0;
+            return state.episodes[state.episode];
         },
         episodes(state) {
             return state.episodes;
         }
     },
     mutations: {
-        setEpisode(state, episode) {
-            state.episode = episode;
+        setEpisode(state, episodeName) {
+            state.episode = state.episodes.map(e => e.name).indexOf(episodeName);
         },
         nextEpisode(state) {
-            if (parseInt(state.episodes[state.episodes.length-1].name) > state.episode)
+            if (state.episode < state.episodes.length-1)
                 state.episode++;
         },
         previousEpisode(state) {
