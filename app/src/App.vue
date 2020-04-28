@@ -9,11 +9,14 @@
 
 <script>
   export default {
-  name: 'App',
-  mounted() {
-    this.$store.commit('loadEpisodes');
+    name: 'App',
+    mounted() {
+      this.loading = true;
+      this.$store.dispatch('loadEpisodes').catch(err => {
+        console.error(err);
+      });
+    }
   }
-}
 </script>
 
 <style lang="scss">
@@ -27,14 +30,14 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background: rgba(72, 88, 133, 0.8);
+      background: rgba(120, 132, 150, 0.6);
       border-radius: 10px;
     }
 
     background: #132a3a;
     width: 100%;
     height: 100%;
-    scrollbar-color: rgba(132, 150, 220, 0.8) #242144; /* thumb and track color */
+    scrollbar-color: rgba(120, 132, 150, 0.6) #242144; /* thumb and track color */
     scrollbar-width: thin;
   }
 

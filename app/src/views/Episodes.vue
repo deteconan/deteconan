@@ -1,7 +1,7 @@
 <template>
     <main-page v-if="episodes && currentEpisode">
         <div v-if="isMobileDevice()">
-            <b-img :src="require('../assets/logo.png')" width="90px" height="90px" class="rounded-circle mt-4" style="border: 2px solid white"></b-img>
+            <b-img :src="require('../assets/logo.png')" width="80px" height="80px" class="rounded-circle mt-4" style="border: 2px solid rgba(255,255,255,0.8)"></b-img>
         </div>
         <div class="content-box pt-5">
             <video-player ref="video-player" :id="currentEpisode.id" :name="currentEpisode.name"></video-player>

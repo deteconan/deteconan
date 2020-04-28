@@ -37,12 +37,17 @@ export default new Vuex.Store({
         previousEpisode(state) {
             if (state.episode > 1)
                 state.episode--;
-        },
-        loadEpisodes(state) {
-            axios.get(process.env.VUE_APP_API_URL + '/api/drive/list').then(res => {
-                state.episodes = res.data.sort((a, b) => parseInt(a.name) - parseInt(b.name));
-            }).catch(err => {
-                console.log(err);
+        }
+    },
+    actions: {
+        loadEpisodes({ state }) {
+            return new Promise((resolve, reject) => {
+                axios.get(process.env.VUE_APP_API_URL + '/api/drive/list').then(res => {
+                    state.episodes = res.data.sort((a, b) => parseInt(a.name) - parseInt(b.name));
+                    resolve();
+                }).catch(err => {
+                    reject(err);
+                });
             });
         }
     },

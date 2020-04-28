@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "./node_modules/.bin/vue-cli-service serve",
     "build": "./node_modules/.bin/vue-cli-service build --mode production",
-    "lint": "./node_modules/.bin/vue-cli-service lint"
+    "lint": "./node_modules/.bin/vue-cli-service lint",
+    "android": "npm run build && npx cap copy && npx cap open android"
   },
   "dependencies": {
     "@capacitor/android": "^2.0.1",
